@@ -1,0 +1,90 @@
+site_name: Level10 Tools
+site_author: Hala Dajani
+site_url: https://level10hq.github.io/tools
+edit_uri: ""
+theme:
+  name: 'material'
+  #logo: level10.png
+repo_url: https://github.com/level10hq/tools
+repo_name: level10hq/tools
+
+# Copyright
+copyright: Copyright &copy; 2020 Level10hq
+
+plugins:
+  - git-revision-date
+  - search
+  #- redirects:
+  #    redirect_maps:
+        # extensions/admonition.md: reference/admonitions.md
+        # extensions/codehilite.md: reference/code-blocks.md
+        # extensions/footnotes.md: reference/footnotes.md
+        # extensions/metadata.md: reference/meta-tags.md
+        # extensions/permalinks.md: setup/setting-up-navigation.md #permalink
+        # extensions/pymdown.md: reference/admonitions.md
+        # plugins/revision-date.md: setup/adding-a-git-repository.md #revision-date
+        # plugins/search.md: setup/setting-up-site-search.md
+        # releases/4.md: upgrading.md #upgrading-from-4x-to-5x
+        # releases/5.md: upgrading.md #upgrading-from-3x-to-4x
+        # releases/changelog.md: changelog.md
+        # setup/adding-social-links.md: setup/setting-up-the-footer.md
+        # sponsorship.md: insiders.md
+  - minify:
+      minify_html: true
+
+  # Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/level10hq
+   # - icon: fontawesome/brands/gitter
+   #   link: https://gitter.im/squidfunk/mkdocs-material
+   # - icon: fontawesome/brands/docker
+   #   link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+   # - icon: fontawesome/brands/twitter
+   #   link: https://twitter.com/squidfunk
+   # - icon: fontawesome/brands/linkedin
+   #   link: https://linkedin.com/in/squidfunk/
+   # - icon: fontawesome/brands/instagram
+   #   link: https://instagram.com/squidfunk
+
+  # Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde

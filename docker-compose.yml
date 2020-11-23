@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:  
+  docs: 
+    container_name: docs
+    build:
+      context:  ./docs      
+    working_dir: /docs
+    volumes:
+      - ./:/docs
+      - ~/.ssh:/root/.ssh
+    ports:
+      - 8000:8000
