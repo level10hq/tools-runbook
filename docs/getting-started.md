@@ -26,6 +26,12 @@ The recommended development environment utilizes docker-compose to build and exe
 * **web**  :  Ruby on Rails server, http://localhost:3000
 * **webpack** :  Webpack development server with hot reloading , http://localhost:3335
 * **postgres**:  Postgres SQL database server, http://localhost:5421
+* **pgadmin** :  Adminstrative tool for Postgres, http://locahost:7500
+  * Email:  ```admin@test.com```
+  * Password:  ```password```
+
+!!! tip
+    To find credentials defined for a docker container, consult the docker-compose.yml file.
 
 Using docker-compose we bind to the current directy and create volumes for postgres data * and node modules that are not bound locally.
  
