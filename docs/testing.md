@@ -52,7 +52,7 @@ make bash
     all commands listed below assume you are in the dockerized **bash** prompt.
 
 
-## [Testing support through Rails Applications](https://guides.rubyonrails.org/v4.2/testing.html)
+## [Testing support through Rails Framework](https://guides.rubyonrails.org/v4.2/testing.html)
 
 * The Rails framework can produce skeleton test code when creating models and controllers.
 * Rails tests can also simulate browser requests allowing verification of an application's response without having to test it through the browser.
@@ -74,7 +74,13 @@ The application contains a ```test``` directory with the following structure.
    * YAML fixutre format is pre-processes
    * [Fixtures API](https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html)
 * ```test_helper.rb``` contains the default configuration for tests. 
-  
+
+??? note inline end "Parallel Tests" 
+    [Rails 6 supports parallel testing](https://edgeguides.rubyonrails.org/testing.html#parallel-testing) through the ```parallelize``` class method on TestCase. 
+    The default ```number_of_processors``` is based on the number of processors on the local machine.  So its likely that running tests locally will result in parallel executions. 
+    ```PARALLEL_WORKERS``` environment variable also always customization. 
+    When parallelizing tests, Active Record automatically handles creating a database and loading the schema into the database for each process. The databases will be suffixed with the number corresponding to the worker. For example, if you have 2 workers the tests will create test-database-0 and test-database-1 respectively.
+    Rails automatically wraps any test case in a database transaction that is rolled back after the test completes.
 
 ### Model Testing
 
@@ -83,12 +89,16 @@ When using Rails ```scaffolding``` to create a model, migration, controller, and
 For example: 
 
 ```
-rails g model Task \
+rails g scaffold Task \
 name:string due_at:datetime done:boolean \
 assigned_to:references discussion:references
 ```
 
-will create a test stub in the test/models folder as well as a fixture YAML in test/fixtures.
+will create a test stubs in 
+* test/models
+* test/controllers
+* system/test
+as well as a fixture YAML in test/fixtures.
 
 Any method defined in the ```..._test.rb``` file starting with ```test_``` (case sensitive) will run automatically when the test case is executed.
 
@@ -96,8 +106,11 @@ Rails supplies a ```test``` method to ease test creation.
 
 To execute the tests:
 ```
-rails test test/models
+rails test test/models (controllers/system)
 ```
+
+!!! note
+    Running ```rails test``` will execute all tests in the **test** directory.
 
 <!-- To execute the test run rspec follwed by the directory or file.  See [here](https://github.com/rspec/rspec-rails#running-specs) for more usage scenarios.
 
@@ -106,22 +119,57 @@ rspec spec/models
 ``` 
 -->
 
-Reset test database 
+??? tip
+    Reset test database 
+
+    ```
+    rails db:test:prepare.
+    rake db:reset RAILS_ENV=test
+    ```
+
+    Migrate test database
+
+    ```
+    rails db:migrate RAILS_ENV=test
+    ```
+
+### System Testing
+System tests verify user interactions with the application, running tests in either a real or headless browser.  System tests use **Capybara** under the hood.  
+
+These tests are located in the **test/system** directory and can be generated using 
 
 ```
-rails db:test:prepare.
-rake db:reset RAILS_ENV=test
+rails g system_test ...
 ```
 
-Migrate test database
+Using the Rails generator for controller creation will create the test stubs as well. See above.
 
+
+### Handling Authentication 
+System and controller testing require authentication.
+
+[OmniAuth](https://github.com/omniauth/omniauth/wiki/Integration-Testing) which we use for handling OAuth with Google provides some facilities for mocking the authentication flow for integration tests.
+
+Through **test mode**, all requests to OmniAuth will be short circuited to use the mock authentication hash. 
+
+```ruby
+OmniAuth.config.test_mode = true
 ```
-rails db:migrate RAILS_ENV=test
+
+A request to ```/auth/provider``` will be redirected immediately to ```/auth/provider/callback```.
+
+```mock_auth``` configuration allows setting of authentication hashes to be used for mocking.
+
+```ruby
+OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+  :provider => 'google',
+  :uid => '123545'
+  # etc.
+})
 ```
 
-#### Systems Testing
 
-
+<!-- 
 ```
 rails g rspec:system add_tasks_to_discussion
 ```
@@ -136,7 +184,7 @@ rspec spec/system
 ```
 
 !!! Note 
-    Running **rspec** without specifiying a directory or file will run all tests in the **spec** directory. 
+    Running **rspec** without specifiying a directory or file will run all tests in the **spec** directory.  -->
 
 
 ## Metrics
