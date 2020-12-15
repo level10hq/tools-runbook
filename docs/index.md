@@ -8,7 +8,7 @@ Level10 Tools, also known as *Product Team*, is a web application based on princ
 ??? info "tech stack"
     *  Ruby 2.7.2
     *  Rails >= 6.0.3.2
-    *  Postgres lastest
+    *  Postgres
     *  AWS Elastic Container Service
   
 
