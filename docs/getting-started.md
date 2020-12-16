@@ -19,16 +19,52 @@ The recommended development environment utilizes docker-compose to build and exe
         then copy master.key from LastPass to file.
 
 * [docker](https://docs.docker.com/get-docker/), note docker-compose should be installed as well.
+* Make (which is installed by default on Mac)
 
+### Up and running
+The development environment uses many services through a virtualzied environment using Docker.  
 
-### Containers that will be instantiated 
+Steps:
+
+1.  Clone this repository 
+    ```
+    git clone https://github.com/level10hq/tools
+    ```
+
+2.  Execute the build command 
+    ```bash
+    make build
+    ```
+3.  Initialize the databases 
+    ```
+    make setup
+    ``` 
+   
+    !!! warning 
+        If databases already exist this will receate them
+   
+4.  Execute the run command 
+    ```
+    make run
+    ```
+    
+    
+After successful execution the following containers will be available:
 
 * **web**  :  Ruby on Rails server, http://localhost:3000
 * **webpack** :  Webpack development server with hot reloading , http://localhost:3335
 * **postgres**:  Postgres SQL database server, http://localhost:5421
-* **pgadmin** :  Adminstrative tool for Postgres, http://locahost:7500
-  * Email:  ```admin@test.com```
-  * Password:  ```password```
+
+??? tip Postgres access
+    If you want to manage the Postgres database, we provide a command to spin up PGAdmin
+    ```
+    make pg-admin
+    ```
+
+     **pgadmin** :  Adminstrative tool for Postgres, http://locahost:7500
+
+      * Email:  ```admin@test.com```
+      * Password:  ```password```
 
 !!! tip
     To find credentials defined for a docker container, consult the docker-compose.yml file.
@@ -38,9 +74,9 @@ Using docker-compose we bind to the current directy and create volumes for postg
 *  **level10-tools_postgres_data**
 *  **level10-tools_nodee_modules** 
 
-Dropping databases is equivalent to deleting the  **level10-tools_postgres_data** volume and can be done using ```make drop```
+Dropping databases is equivalent to deleting the  **level10-tools_postgres_data** volume and can be done using 
 
 ```
-make build 
+make drop
 ```
 
