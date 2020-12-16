@@ -8,7 +8,7 @@ The recommended development environment utilizes docker-compose to build and exe
     ??? tip docker extension
         [docker extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) for vscode 
  
-* Access to LastPass
+* Access to LastPass.  Download [here](https://www.lastpass.com/) and add as a Chrome extension.  Create a free account.
        
     ??? warning inline end "master.key file required"
         you'll need the master key shared through LastPass 
@@ -18,10 +18,10 @@ The recommended development environment utilizes docker-compose to build and exe
         ```
         then copy master.key from LastPass to file.
 
-* docker
-* docker-compose
+* [docker](https://docs.docker.com/get-docker/), note docker-compose should be installed as well.
 
-### Containers
+
+### Containers that will be instantiated 
 
 * **web**  :  Ruby on Rails server, http://localhost:3000
 * **webpack** :  Webpack development server with hot reloading , http://localhost:3335
