@@ -22,7 +22,7 @@ The recommended development environment utilizes docker-compose to build and exe
 * Make (which is installed by default on Mac)
 
 ### Up and running
-The development environment uses many services through a virtualzied environment using Docker.  
+In five easy steps.  The development environment uses many services through a virtualized environment.  
 
 Steps:
 
@@ -39,11 +39,17 @@ Steps:
     ```
     make setup
     ``` 
-   
+
     !!! warning 
-        If databases already exist this will receate them
+        If databases already exist this will recreate them
+
+
+4.  Update the databases
+    ```
+    make  migrate
+    ``` 
    
-4.  Execute the run command 
+5.  Execute the run command 
     ```
     make run
     ```
@@ -69,10 +75,11 @@ After successful execution the following containers will be available:
 !!! tip
     To find credentials defined for a docker container, consult the docker-compose.yml file.
 
-Using docker-compose we bind to the current directy and create volumes for postgres data * and node modules that are not bound locally.
+Using docker-compose we bind to the current directy and create volumes for postgres data, Ruby gem cache, and node modules that are not bound locally.
  
 *  **level10-tools_postgres_data**
-*  **level10-tools_nodee_modules** 
+*  **level10-tools_node_modules** 
+*  **level10-tools_container_gems** 
 
 Dropping databases is equivalent to deleting the  **level10-tools_postgres_data** volume and can be done using 
 
@@ -80,3 +87,7 @@ Dropping databases is equivalent to deleting the  **level10-tools_postgres_data*
 make drop
 ```
 
+!!! Note 
+    The volumes mentioned are not bound locally so you are free to load the node_modules locally, which we will need to for Cypress testing.
+    In other words, the node_modules directory you see in on the host machine only applies to the host machine.  
+    These are ignored through .dockerignore so they will never make it to the container instances.

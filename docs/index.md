@@ -7,10 +7,24 @@ Level10 Tools, also known as *Product Team*, is a web application based on princ
 
 ??? info "tech stack"
     *  Ruby 2.7.2
-    *  Rails >= 6.0.3.2
+    *  Ruby on Rails 6 Progressive Web App
+    *  Stimulus.js (For Front end interactions)
+    *  Bootstrap (For Css framework)
+    *  Webpack (For dependency and asset Management)
     *  Postgres
-    *  AWS Elastic Container Service
-  
+    *  AWS Elastic Container Service    
+
+    We stick with Rails defaults for testing, what means we use:
+    *  Minitest
+    *  Capybara
+    *  Fixtures
+<!-- 
+Additionally, we use:
+- Webmock
+- stripe-ruby-mock
+- minitest-hooks
+- minitest-stub-const
+   -->
 
 --8<-- "docs/getting-started.md"
 

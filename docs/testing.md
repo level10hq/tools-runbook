@@ -27,9 +27,9 @@ We utilize the following toolset for testing our Ruby on Rails application
 3. [selenium-webdriver](https://www.selenium.dev/selenium/docs/api/rb/index.html) To communicate with the WebDriver protocol, an HTTP-based protocol for automating browsers
 
 <!-- 2. RSpec
-3. Database cleaner:  to ensure a clean state for database during tests
-4. [FactoryBot](https://github.com/thoughtbot/factory_bot/wiki):  a fixtures replacement
-5. Faker:  a library for generating fake data  -->
+1. Database cleaner:  to ensure a clean state for database during tests
+2. [FactoryBot](https://github.com/thoughtbot/factory_bot/wiki):  a fixtures replacement
+3. Faker:  a library for generating fake data  -->
 
 <!-- ### RSpec
 [RSpec](https://github.com/rspec/rspec-rails) is a testing frameork that describes an application's behavior. 
@@ -134,7 +134,8 @@ rspec spec/models
     ```
 
 ### System Testing
-System tests verify user interactions with the application, running tests in either a real or headless browser.  System tests use **Capybara** under the hood.  
+System tests verify user interactions with the application, running tests in either a real or headless browser.  System tests use **Capybara** under the hood.   Because system tests use a real browser experience, you can test all of your JavaScript easily from your test suite.
+
 
 These tests are located in the **test/system** directory and can be generated using 
 
@@ -142,7 +143,8 @@ These tests are located in the **test/system** directory and can be generated us
 rails g system_test ...
 ```
 
-Using the Rails generator for controller creation will create the test stubs as well. See above.
+!!! tip
+    Using the Rails generator for controller creation will create the test stubs as well. See above.
 
 
 ### Handling Authentication 
