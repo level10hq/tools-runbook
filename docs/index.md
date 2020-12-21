@@ -15,6 +15,7 @@ Level10 Tools, also known as *Product Team*, is a web application based on princ
     *  AWS Elastic Container Service    
 
     We stick with Rails defaults for testing, what means we use:
+
     *  Minitest
     *  Capybara
     *  Fixtures
