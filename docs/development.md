@@ -37,3 +37,4 @@ Although we use docker extensively for instantiating needed services and tools, 
   npm i -g cypress
   ```
 
+ <!-- rails g scaffold Comment text:string belongs_to:user belongs_to:dicsussion -->

@@ -23,7 +23,7 @@ We utilize the following toolset for testing our Ruby on Rails application
 
 1. [MiniTest](https://github.com/seattlerb/minitest):  the unit testing library that Rails' built-in testing framework is based on. 
    It provides base classes for test cases, basic assertions like ```assert_equal``` and a runner to run tests and report on their success and failre. 
-2. [Capybara](https://github.com/teamcapybara/capybara):  is a Ruby library for full-stack testing of web applications.
+2. [Capybara](https://github.com/teamcapybara/capybara):  is a Ruby library for full-stack testing of web applications.  Capybara allows for 
 3. [selenium-webdriver](https://www.selenium.dev/selenium/docs/api/rb/index.html) To communicate with the WebDriver protocol, an HTTP-based protocol for automating browsers
 
 <!-- 2. RSpec
@@ -191,5 +191,7 @@ rspec spec/system
 
 ## Metrics
 Verification is established through code coverage metrics calulcated through automated test execution. 
+
+## 
 
 
